@@ -2,7 +2,22 @@ import { ContributionDay } from '../types';
 
 interface GitHubGraphQLResponse {
   data?: {
-    user: {
+    user?: {
+      contributionsCollection: {
+        contributionCalendar: {
+          totalContributions: number;
+          weeks: Array<{
+            contributionDays: Array<{
+              date: string;
+              contributionCount: number;
+              color: string;
+            }>;
+          }>;
+        };
+      };
+    };
+    viewer?: {
+      login: string;
       contributionsCollection: {
         contributionCalendar: {
           totalContributions: number;
@@ -52,6 +67,21 @@ export async function fetchUserContributions(
           }
         }
       }
+      viewer {
+        login
+        contributionsCollection(from: $from, to: $to) {
+          contributionCalendar {
+            totalContributions
+            weeks {
+              contributionDays {
+                date
+                contributionCount
+                color
+              }
+            }
+          }
+        }
+      }
     }
   `;
 
@@ -80,15 +110,27 @@ export async function fetchUserContributions(
     const data: GitHubGraphQLResponse = await response.json();
 
     if (data.errors) {
-      throw new Error(`GraphQL errors: ${JSON.stringify(data.errors)}`);
+      // If user is not found, data.user will be null, but we might have viewer
+      // If we have other errors, throw them
+      const userNotFoundError = data.errors.find(e => e.message.includes('Could not resolve to a User'));
+      if (!userNotFoundError || !data.data?.viewer) {
+        throw new Error(`GraphQL errors: ${JSON.stringify(data.errors)}`);
+      }
     }
 
-    if (!data.data?.user) {
+    let calendarData;
+
+    // Check if we should use viewer data (if authenticated user is the requested user)
+    if (data.data?.viewer && data.data.viewer.login.toLowerCase() === username.toLowerCase()) {
+      calendarData = data.data.viewer.contributionsCollection.contributionCalendar;
+    } else if (data.data?.user) {
+      calendarData = data.data.user.contributionsCollection.contributionCalendar;
+    } else {
       throw new Error(`User ${username} not found`);
     }
 
     const contributions: ContributionDay[] = [];
-    const weeks = data.data.user.contributionsCollection.contributionCalendar.weeks;
+    const weeks = calendarData.weeks;
 
     for (const week of weeks) {
       for (const day of week.contributionDays) {
