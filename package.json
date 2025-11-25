@@ -1,6 +1,6 @@
 {
   "name": "git-contri-merged",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "A React component to display merged GitHub contribution graphs from multiple contributors",
   "type": "module",
   "main": "dist/index.umd.js",
@@ -20,7 +20,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "build:lib": "vite build --mode lib && tsc -p tsconfig.build.json"
+    "build:lib": "vite build --mode lib && tsc -p tsconfig.build.json",
+    "prepublishOnly": "npm run build:lib"
   },
   "keywords": [
     "react",
