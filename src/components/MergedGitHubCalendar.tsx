@@ -117,9 +117,11 @@ export const MergedGitHubCalendar: React.FC<MergedCalendarProps> = (props) => {
   }, [usernames, repoName, years, onDataLoad, onContributorsLoad, githubToken]);
 
   if (isLoading) {
-    return (
+    return loading ? (
+      <>{loading}</>
+    ) : (
       <div style={{ padding: '20px', color: theme.text }}>
-        {loading || 'Loading contributions...'}
+        Loading contributions...
       </div>
     );
   }

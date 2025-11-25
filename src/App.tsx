@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { MergedGitHubCalendar } from './components/MergedGitHubCalendar';
+import { SkeletonCalendar } from './components/SkeletonCalendar';
 import './styles/App.css';
 
 type Mode = 'usernames' | 'repo';
@@ -249,12 +250,7 @@ function App() {
               showWeekdayLabels={true}
               showMonthLabels={true}
               onContributorsLoad={setContributors}
-              loading={
-                <div className="loading">
-                  <div className="spinner"></div>
-                  <p>Loading repository contributors...</p>
-                </div>
-              }
+              loading={<SkeletonCalendar colorScheme={colorScheme} />}
             />
           ) : fetchKey > 0 && mode === 'usernames' && usernames.length > 0 ? (
             <MergedGitHubCalendar
@@ -266,12 +262,7 @@ function App() {
               blockMargin={3}
               showWeekdayLabels={true}
               showMonthLabels={true}
-              loading={
-                <div className="loading">
-                  <div className="spinner"></div>
-                  <p>Loading contributions...</p>
-                </div>
-              }
+              loading={<SkeletonCalendar colorScheme={colorScheme} />}
             />
           ) : (
             <div className="empty-state" style={{ color: colorScheme === 'dark' ? '#8b949e' : '#57606a' }}>
