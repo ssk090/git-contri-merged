@@ -209,6 +209,7 @@ button:active {
 .calendar-wrapper {
   display: flex;
   justify-content: center;
+  align-items: flex-start;
   margin: 40px 0;
   overflow-x: auto;
   padding: 20px;
