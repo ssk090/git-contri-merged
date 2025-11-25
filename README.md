@@ -1,4 +1,6 @@
 # Merged GitHub Contribution Calendar
+<img width="1024" height="1024" alt="image" src="https://github.com/user-attachments/assets/4f0f9016-2255-43ca-8c33-1057a7a67b22" />
+
 
 A React component that combines and visualizes GitHub contributions from multiple users in a single, merged contribution graph. Perfect for team projects, organizations, or collaborative repositories where you want to see the combined effort of all contributors.
 
