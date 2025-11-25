@@ -36,7 +36,7 @@ export default defineConfig(({ mode }) => {
       outDir: 'dist',
       emptyOutDir: true,
     } : {
-      outDir: 'dist-demo', // Separate output for the demo app
+      outDir: 'dist',
     },
   }
 })
