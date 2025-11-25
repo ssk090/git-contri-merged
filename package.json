@@ -1,6 +1,6 @@
 {
   "name": "git-contri-merged",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "A React component to display merged GitHub contribution graphs from multiple contributors",
   "type": "module",
   "main": "dist/index.umd.js",
