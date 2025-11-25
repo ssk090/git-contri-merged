@@ -1,0 +1,48 @@
+{
+  "name": "git-contri-merged",
+  "version": "1.0.0",
+  "description": "A React component to display merged GitHub contribution graphs from multiple contributors",
+  "type": "module",
+  "main": "dist/index.umd.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "build:lib": "vite build --mode lib && tsc -p tsconfig.build.json"
+  },
+  "keywords": [
+    "react",
+    "github",
+    "contributions",
+    "calendar",
+    "visualization"
+  ],
+  "author": "",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "@vitejs/plugin-react": "^4.2.1",
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0"
+  },
+  "dependencies": {
+    "html-to-image": "^1.11.13"
+  }
+}
