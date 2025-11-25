@@ -26,7 +26,11 @@ The example app lets you:
 ## Installation
 
 ```bash
-pnpm install
+npm install git-contri-merged
+# or
+pnpm add git-contri-merged
+# or
+yarn add git-contri-merged
 ```
 
 ## Usage
@@ -40,7 +44,7 @@ The component supports two modes:
 Simply provide a repository name and the component will automatically fetch and merge contributions from all contributors:
 
 ```tsx
-import { MergedGitHubCalendar } from './components/MergedGitHubCalendar';
+import { MergedGitHubCalendar } from 'git-contri-merged';
 
 function App() {
   return (
@@ -69,7 +73,7 @@ With callback to get the list of contributors:
 Specify individual GitHub usernames:
 
 ```tsx
-import { MergedGitHubCalendar } from './components/MergedGitHubCalendar';
+import { MergedGitHubCalendar } from 'git-contri-merged';
 
 function App() {
   return (
